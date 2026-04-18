@@ -1,0 +1,31 @@
+# FastFRP Client Docker Image
+# Based on official frpc image with environment variable configuration support
+
+# Use official FRP client image as base
+# 使用官方 FRP 客户端镜像作为基础
+FROM ghcr.io/fatedier/frpc:v0.68.1
+
+# Install gettext package for envsubst command
+# Used to substitute environment variables in config template
+# 安装 gettext 工具包以支持环境变量替换
+RUN apk add --no-cache gettext
+
+# Copy configuration template into container
+# Template will be processed at runtime with envsubst
+# 将配置模板文件复制到容器内
+COPY fastfrpc.toml.template /etc/frp/frpc.toml.template
+
+# Set default environment variables
+# These can be overridden at runtime with -e flags
+# 设置默认环境变量（可在运行时通过 -e 参数覆盖）
+ENV DASHBOARD_USER=admin
+ENV DASHBOARD_PWD=change_me
+ENV DASHBOARD_PORT=7899
+
+# Container startup command
+# 1. Validate required environment variables
+# 2. Process template with envsubst to generate final config
+# 3. Start FRP client with generated config
+# 容器启动命令
+ENTRYPOINT ["/bin/sh", "-c"]
+CMD ["test -n \"$SERVER_ADDR\" || { echo 'SERVER_ADDR is required' >&2; exit 1; }; test -n \"$TOKEN\" || { echo 'TOKEN is required' >&2; exit 1; }; envsubst < /etc/frp/frpc.toml.template > /etc/frp/frpc.toml && frpc -c /etc/frp/frpc.toml"]
