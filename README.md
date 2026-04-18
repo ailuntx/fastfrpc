@@ -14,7 +14,7 @@ docker run -d \
   -e DASHBOARD_USER=admin \
   -e DASHBOARD_PWD=strong-password \
   -e DASHBOARD_PORT=7899 \
-  your-dockerhub-user/fastfrpc:latest
+  ailuntz/fastfrpc:latest
 ```
 
 Open `http://your-local-ip:7899`.
@@ -36,7 +36,7 @@ Open `http://your-local-ip:7899`.
 ## Build
 
 ```bash
-docker buildx build --platform linux/arm64,linux/amd64 -t your-dockerhub-user/fastfrpc:latest -f Dockerfile.fastfrpc --push .
+docker buildx build --platform linux/arm64,linux/amd64 -t ailuntz/fastfrpc:latest -f Dockerfile.fastfrpc --push .
 ```
 
 MIT
