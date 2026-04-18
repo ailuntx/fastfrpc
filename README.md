@@ -30,8 +30,8 @@ Open `http://your-local-ip:7899`.
 ## Notes
 
 - Proxies are managed from the client Web UI or API
-- Store path: `/etc/frp/frpc-store.json`
-- Mount `/etc/frp` if you want to keep Store data
+- Store path: `/etc/frp/store/frpc-store.json`
+- Mount `/etc/frp/store` if you want to keep Store data
 
 ## Build
 

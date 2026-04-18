@@ -31,4 +31,4 @@ webServer.password = "${DASHBOARD_PWD}"
 # Enable Store for dynamic proxy and visitor management
 # 启用 Store，用于通过 Web UI / API 动态管理代理和访问者
 [store]
-path = "/etc/frp/frpc-store.json"
+path = "/etc/frp/store/frpc-store.json"
